@@ -13,9 +13,8 @@ app.get("/",(req,res)=>{
 
 //Socket.io
 io.on("connection",socket=>{
-    socket.on("HelloWorld",data=>{
-        console.log(data)
-        socket.emit("resultado", data.nome);
+    socket.on("disconnect",()=>{
+        console.log(socket.id + " desconectou")
     })
 })
 

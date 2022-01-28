@@ -7,24 +7,22 @@
      <title>Document</title>
  </head>
  <body>
-     <input type="text" name="palavra" id="palavra"/>
-     <button id="buttonSendName">Enviar</button>
-     <p id="resultado"></p>
+    <h1>Chat</h1>
+    <div id="chat">
+
+    </div><br/>
+    <input type="text" id="msg"><br/>
+    <input type="text" id="username" placeholder="DIgite seu nome">
+    <button id="enviteMessageChat">Enviar</button>
  </body>
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
  <script>
-    var socket = io("http://localhost:3000")
-    const buttonSend = document.querySelector("#buttonSendName")
-    buttonSend.addEventListener('click',()=>{
-        inputName = document.querySelector("#palavra")
-        socket.emit("HelloWorld",{nome: inputName.value})
+    const socket = io("http://localhost:3000")
+    socket.on("disconnect",()=>{
+        console.log("Desconectado")
     })
-    socket.on("resultado",data=>{
-        const resultado = document.querySelector("#resultado")
-        console.log(data)
-        resultado.innerHTML = data
-    })
+
     
  </script>
  </html>
